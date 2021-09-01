@@ -95,7 +95,34 @@ function searchByEyeColor(people){
       }
   })
 return foundPerson;
+}
 
+function searchByGender(people){
+  let gender = promptFor("What is the person's gender?", autoValid);
+
+  let foundPerson = people.filter(function(potentialMatch){
+      if ( potentialMatch.gender === gender){
+          return true;
+      }
+      else{
+          return false;
+      }
+  })
+return foundPerson;
+}
+
+function searchByDob(people){
+  let dob = promptFor("What is the person's D.O.B.?", autoValid);
+
+  let foundPerson = people.filter(function(potentialMatch){
+      if ( potentialMatch.dob === dob){
+          return true;
+      }
+      else{
+          return false;
+      }
+  })
+return foundPerson;
 }
 //TODO: add other trait filter functions here.
 
