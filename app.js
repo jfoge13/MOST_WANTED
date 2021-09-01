@@ -10,11 +10,15 @@
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   let searchResults;
+  let searchTypeTraits = promptFor("Which trait(s) of the person would you like to search for? Enter 'gender', 'dob-(mm/dd/yyyy)', 'height', 'weight', 'eye color', or 'occupation'");
   switch(searchType){
     case 'yes':
       searchResults = searchByName(people);
       break;
     case 'no':
+      if (searchTypeTraits.includes('gender', 'dob-(mm/dd/yyyy)', 'height', 'weight', 'eye color', 'occupation'){
+        
+      } 
       searchResults = searchByEyeColor(people);
       break;
       default:
