@@ -124,6 +124,21 @@ function searchByDob(people){
   })
 return foundPerson;
 }
+
+function searchByHeight(people){
+  let height = promptFor("What is the person's height in inches?", autoValid);
+
+  let foundPerson = people.filter(function(potentialMatch){
+      if ( potentialMatch.height === height){
+          return true;
+      }
+      else{
+          return false;
+      }
+  })
+return foundPerson;
+}
+
 //TODO: add other trait filter functions here.
 
 
