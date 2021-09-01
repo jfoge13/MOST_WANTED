@@ -15,7 +15,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-      // TODO: search by traits
+      searchResults = searchByEyeColor(people);
       break;
       default:
     app(people); // restart app
@@ -36,7 +36,7 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
-  let displayOption = promptFor("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
+  let displayOption = promptFor("Found " + person[0].firstName + " " + person[0].lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
 
   switch(displayOption){
     case "info":
@@ -84,9 +84,19 @@ function searchByName(people){
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
+  let eyeColor = promptFor("What is the person's eye color?", autoValid);
+
+  let foundPerson = people.filter(function(potentialMatch){
+      if ( potentialMatch.eyeColor === eyeColor){
+          return true;
+      }
+      else{
+          return false;
+      }
+  })
+return foundPerson;
 
 }
-
 //TODO: add other trait filter functions here.
 
 
