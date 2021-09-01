@@ -139,8 +139,8 @@ function searchByHeight(people){
 return foundPerson;
 }
 
-function searchByGender(weight){
-  let wight = promptFor("What is the person's weight in lbs?", autoValid);
+function searchByWeight(people){
+  let weight = promptFor("What is the person's weight in lbs?", autoValid);
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.weight === weight){
