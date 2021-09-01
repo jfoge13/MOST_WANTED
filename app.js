@@ -10,15 +10,13 @@
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   let searchResults;
-  let searchTypeTraits = promptFor("Which trait(s) of the person would you like to search for? Enter 'gender', 'dob-(mm/dd/yyyy)', 'height', 'weight', 'eye color', or 'occupation'");
+  let searchTypeTraits = prompt("Which trait(s) of the person would you like to search for? Enter 'gender', 'dob-(mm/dd/yyyy)', 'height', 'weight', 'eye color', or 'occupation'").toLowerCase();
   switch(searchType){
     case 'yes':
       searchResults = searchByName(people);
       break;
     case 'no':
-      if (searchTypeTraits.includes('gender', 'dob-(mm/dd/yyyy)', 'height', 'weight', 'eye color', 'occupation'){
-        
-      } 
+      
       searchResults = searchByEyeColor(people);
       break;
       default:
@@ -88,7 +86,7 @@ function searchByName(people){
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
-  let eyeColor = promptFor("What is the person's eye color?", autoValid);
+  let eyeColor = promptFor("What is the person's eye color?", autoValid).toLowerCase();
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.eyeColor === eyeColor){
@@ -102,7 +100,7 @@ return foundPerson;
 }
 
 function searchByGender(people){
-  let gender = promptFor("What is the person's gender?", autoValid);
+  let gender = promptFor("What is the person's gender?", autoValid).toLowerCase();
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.gender === gender){
@@ -130,7 +128,7 @@ return foundPerson;
 }
 
 function searchByHeight(people){
-  let height = promptFor("What is the person's height in inches?", autoValid);
+  let height = promptFor("What is the person's height in inches?", autoValid).toLowerCase();
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.height === height){
@@ -144,7 +142,7 @@ return foundPerson;
 }
 
 function searchByWeight(people){
-  let weight = promptFor("What is the person's weight in lbs?", autoValid);
+  let weight = promptFor("What is the person's weight in lbs?", autoValid).toLowerCase();
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.weight === weight){
@@ -158,7 +156,7 @@ return foundPerson;
 }
 
 function searchByOccupation(people){
-  let occupation = promptFor("What is the person's occupation?", autoValid);
+  let occupation = promptFor("What is the person's occupation?", autoValid).toLowerCase();
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.occupation === occupation){
