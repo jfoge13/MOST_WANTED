@@ -23,7 +23,7 @@ function app(people){
   }
 }
 function appTraits(people){
-  let searchTypeTraits = prompt("Which trait(s) of the person would you like to search for? Enter 'gender', 'date of birth', 'height', 'weight', 'eye color', or 'occupation'", yesNo).toLowerCase();
+  let searchTypeTraits = prompt("Which trait(s) of the person would you like to search for? Enter 'gender', 'date of birth', 'height', 'weight', 'eye color', or 'occupation'").toLowerCase();
   let searchResultTraits;
 
   switch(searchTypeTraits) {
@@ -34,16 +34,16 @@ function appTraits(people){
       searchResultTraits = searchByDob(people);
       break;
     case 'height':
-      searchResultTraits = searchByGender(people);
+      searchResultTraits = searchByHeight(people);
       break;
     case 'weight':
-      searchResultTraits = searchByDob(people);
+      searchResultTraits = searchByWeight(people);
       break;
     case 'eye color':
-      searchResultTraits = searchByGender(people);
+      searchResultTraits = searchByEyeColor(people);
       break;
     case 'occupation':
-      searchResultTraits = searchByDob(people);
+      searchResultTraits = searchByOccupation(people);
       break;
   }
 
@@ -111,7 +111,7 @@ function searchByName(people){
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
-  let eyeColor = promptFor("What is the person's eye color?", autoValid);
+  let eyeColor = promptFor("What is the person's eye color?", autoValid).toLowerCase();
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.eyeColor === eyeColor){
@@ -125,7 +125,7 @@ return foundPerson;
 }
 
 function searchByGender(people){
-  let gender = promptFor("What is the person's gender?", autoValid);
+  let gender = promptFor("What is the person's gender?", autoValid).toLowerCase();
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.gender === gender){
@@ -139,7 +139,7 @@ return foundPerson;
 }
 
 function searchByDob(people){
-  let dob = promptFor("What is the person's D.O.B.?", autoValid);
+  let dob = promptFor("What is the person's D.O.B.?", autoValid).toLowerCase();
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.dob === dob){
@@ -153,7 +153,7 @@ return foundPerson;
 }
 
 function searchByHeight(people){
-  let height = promptFor("What is the person's height in inches?", autoValid);
+  let height = promptFor("What is the person's height in inches?", autoValid).toLowerCase();
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.height === height){
@@ -167,7 +167,7 @@ return foundPerson;
 }
 
 function searchByWeight(people){
-  let weight = promptFor("What is the person's weight in lbs?", autoValid);
+  let weight = promptFor("What is the person's weight in lbs?", autoValid).toLowerCase();
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.weight === weight){
@@ -181,7 +181,7 @@ return foundPerson;
 }
 
 function searchByOccupation(people){
-  let occupation = promptFor("What is the person's occupation?", autoValid);
+  let occupation = promptFor("What is the person's occupation?", autoValid).toLowerCase();
 
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.occupation === occupation){
@@ -252,6 +252,10 @@ function yesNo(input){
     return false;
   }
 }
+
+// function traits(input){
+//   if (input.toLowerCase() == "gender" || input.toLowerCase() == "dob" || input.toLowerCase() == "height" || input.toLowerCase() == "weight" || input.toLowerCase() == "eye color" || input.toLowerCase() == "occupation")
+// }
 
 // helper function to pass in as default promptFor validation.
 //this will always return true for all inputs.
