@@ -10,25 +10,48 @@
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   let searchResults;
-  let searchTypeTraits = promptFor("Which trait(s) of the person would you like to search for? Enter 'gender', 'dob-(mm/dd/yyyy)', 'height', 'weight', 'eye color', or 'occupation'");
   switch(searchType){
     case 'yes':
       searchResults = searchByName(people);
       break;
     case 'no':
-      if (searchTypeTraits.includes('gender', 'dob-(mm/dd/yyyy)', 'height', 'weight', 'eye color', 'occupation'){
-        
-      } 
-      searchResults = searchByEyeColor(people);
+      searchResults = appTraits(people);      
       break;
       default:
     app(people); // restart app
       break;
   }
+}
+function appTraits(people){
+  let searchTypeTraits = prompt("Which trait(s) of the person would you like to search for? Enter 'gender', 'date of birth', 'height', 'weight', 'eye color', or 'occupation'", yesNo).toLowerCase();
+  let searchResultTraits;
+
+  switch(searchTypeTraits) {
+    case 'gender':
+      searchResultTraits = searchByGender(people);
+      break;
+    case 'date of birth':
+      searchResultTraits = searchByDob(people);
+      break;
+    case 'height':
+      searchResultTraits = searchByGender(people);
+      break;
+    case 'weight':
+      searchResultTraits = searchByDob(people);
+      break;
+    case 'eye color':
+      searchResultTraits = searchByGender(people);
+      break;
+    case 'occupation':
+      searchResultTraits = searchByDob(people);
+      break;
+  }
+
+}
   
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  mainMenu(searchResults, people);
-}
+mainMenu(searchResults, people);
+
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
