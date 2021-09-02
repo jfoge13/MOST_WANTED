@@ -271,7 +271,12 @@ function yesNo(input){
 }
 
 // function traits(input){
-//   if (input.toLowerCase() == "gender" || input.toLowerCase() == "dob" || input.toLowerCase() == "height" || input.toLowerCase() == "weight" || input.toLowerCase() == "eye color" || input.toLowerCase() == "occupation")
+//   if(input.toLowerCase() == "gender" || input.toLowerCase() == "dob" || input.toLowerCase() == "height" || input.toLowerCase() == "weight" || input.toLowerCase() == "eye color" || input.toLowerCase() == "occupation"){
+//     return true;
+//   }
+//   else{
+//     return false;
+//   }
 // }
 
 // helper function to pass in as default promptFor validation.
