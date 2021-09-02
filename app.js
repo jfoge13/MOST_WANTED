@@ -18,8 +18,8 @@ function app(people){
       searchResults = appTraits(people);
          
       break;
-      default:
-    app(people); // restart app
+    default:
+      app(people); // restart app
       break;
   }
   console.log(searchResults);  
@@ -51,6 +51,8 @@ function appTraits(people){
     case 'occupation':
       searchResultTraits = searchByOccupation(people);
       break;
+    default:
+      appTraits(people);
   }
   return searchResultTraits;
 
@@ -121,12 +123,12 @@ function searchByEyeColor(people){
   let eyeColor = promptFor("What is the person's eye color?", autoValid).toLowerCase();
   let eyeColorArray = [];
   let foundPerson = people.filter(function(potentialMatch){
-      if ( potentialMatch.eyeColor === eyeColor){
+    if ( potentialMatch.eyeColor === eyeColor){
          
-        return true;
+      return true;
       }
-      else{
-          return false;
+    else{
+      return false;
       }
   })
   eyeColorArray.push(foundPerson);
@@ -138,11 +140,11 @@ function searchByGender(people){
   let gender = promptFor("What is the person's gender?", autoValid).toLowerCase();
 let genderArray = [];
   let foundPerson = people.filter(function(potentialMatch){
-      if ( potentialMatch.gender === gender){
-          return true;
+    if ( potentialMatch.gender === gender){
+      return true;
       }
-      else{
-          return false;
+    else{
+      return false;
       }
   })
   genderArray.push(foundPerson);
@@ -153,11 +155,11 @@ function searchByDob(people){
   let dob = promptFor("What is the person's D.O.B.?", autoValid).toLowerCase();
   let dobArray = [];
   let foundPerson = people.filter(function(potentialMatch){
-      if ( potentialMatch.dob === dob){
-          return true;
+    if ( potentialMatch.dob === dob){
+      return true;
       }
-      else{
-          return false;
+    else{
+      return false;
       }
   })
   dobArray.push(foundPerson);
@@ -168,11 +170,11 @@ function searchByHeight(people){
   let height = promptFor("What is the person's height in inches?", autoValid).toLowerCase();
   let heightArray=[];
   let foundPerson = people.filter(function(potentialMatch){
-      if ( potentialMatch.height === height){
-          return true;
+    if ( potentialMatch.height === height){
+      return true;
       }
-      else{
-          return false;
+    else{
+      return false;
       }
   })
   heightArray.push(foundPerson)
@@ -183,11 +185,11 @@ function searchByWeight(people){
   let weight = promptFor("What is the person's weight in lbs?", autoValid).toLowerCase();
   let weightArray = [];
   let foundPerson = people.filter(function(potentialMatch){
-      if ( potentialMatch.weight === weight){
-          return true;
+    if ( potentialMatch.weight === weight){
+      return true;
       }
-      else{
-          return false;
+    else{
+      return false;
       }
   })
   weightArray.push(foundPerson)
@@ -198,11 +200,11 @@ function searchByOccupation(people){
   let occupation = promptFor("What is the person's occupation?", autoValid).toLowerCase();
 let occupationArray = [];
   let foundPerson = people.filter(function(potentialMatch){
-      if ( potentialMatch.occupation === occupation){
-          return true;
+    if ( potentialMatch.occupation === occupation){
+      return true;
       }
-      else{
-          return false;
+    else{
+      return false;
       }
   })
   occupationArray.push(foundPerson);
