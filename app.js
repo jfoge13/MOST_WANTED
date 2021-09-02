@@ -18,48 +18,72 @@ function app(people){
       searchResults = appTraits(people);
          
       break;
-    default:
-      app(people); // restart app
+      default:
+    app(people); // restart app
       break;
   }
-  console.log(searchResults);  
-  return searchResults; 
-  appTraits(searchResults);
+  mainMenu(searchResults, people);
 }
 
 
 function appTraits(people){
   let searchTypeTraits = prompt("Which trait(s) of the person would you like to search for? Enter 'gender', 'date of birth', 'height', 'weight', 'eye color', or 'occupation'").toLowerCase();
-  let searchResultTraits;
+  
+  let newArray = people;
+  
 
-  switch(searchTypeTraits) {
-    case 'gender':
-      searchResultTraits = searchByGender(people);
-      break;
-    case 'date of birth':
-      searchResultTraits = searchByDob(people);
-      break;
-    case 'height':
-      searchResultTraits = searchByHeight(people);
-      break;
-    case 'weight':
-      searchResultTraits = searchByWeight(people);
-      break;
-    case 'eye color':
-      searchResultTraits = searchByEyeColor(people);
-      break;
-    case 'occupation':
-      searchResultTraits = searchByOccupation(people);
-      break;
-    default:
-      appTraits(people);
-  }
-  return searchResultTraits;
+if (searchTypeTraits.includes("gender")){
+  newArray = searchByGender(newArray);
+} if(searchTypeTraits.includes("date of birth")){
+   newArray = searchByDob(newArray);
+} if(searchTypeTraits.includes("height")){
+   newArray = searchByHeight(newArray);
+} if(searchTypeTraits.includes("weight")){
+   newArray = searchByWeight(newArray);
+}if(searchTypeTraits.includes("eye color")){
+   newArray = searchByEyeColor(newArray);
+} if(searchTypeTraits.includes("occupation")){
+   newArray = searchByOccupation(newArray);
 
 }
   
+
+
+
+newArray.sort();
+console.log(newArray);
+return newArray;
+}
+
+
+
+
+//   switch(searchTypeTraits) {
+//     case 'gender':
+//       searchResultTraits = searchByGender(people);
+//       break;
+//     case 'date of birth':
+//       searchResultTraits = searchByDob(people);
+//       break;
+//     case 'height':
+//       searchResultTraits = searchByHeight(people);
+//       break;
+//     case 'weight':
+//       searchResultTraits = searchByWeight(people);
+//       break;
+//     case 'eye color':
+//       searchResultTraits = searchByEyeColor(people);
+//       break;
+//     case 'occupation':
+//       searchResultTraits = searchByOccupation(people);
+//       break;
+//   }
+//   return searchResultTraits;
+
+// }
+  
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-mainMenu(people);
+
 
 
 // Menu function to call once you find who you are looking for
@@ -121,94 +145,93 @@ function searchByName(people){
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
   let eyeColor = promptFor("What is the person's eye color?", autoValid).toLowerCase();
-  let eyeColorArray = [];
   let foundPerson = people.filter(function(potentialMatch){
-    if ( potentialMatch.eyeColor === eyeColor){
+      if ( potentialMatch.eyeColor === eyeColor){
          
-      return true;
+        return true;
       }
-    else{
-      return false;
+      else{
+          return false;
       }
   })
-  eyeColorArray.push(foundPerson);
-return eyeColorArray;
+  
+return foundPerson  ;
 }
 
 
 function searchByGender(people){
   let gender = promptFor("What is the person's gender?", autoValid).toLowerCase();
-let genderArray = [];
+
   let foundPerson = people.filter(function(potentialMatch){
-    if ( potentialMatch.gender === gender){
-      return true;
+      if ( potentialMatch.gender === gender){
+          return true;
       }
-    else{
-      return false;
+      else{
+          return false;
       }
   })
-  genderArray.push(foundPerson);
-return genderArray;
+  
+return foundPerson;
 }
 
 function searchByDob(people){
   let dob = promptFor("What is the person's D.O.B.?", autoValid).toLowerCase();
-  let dobArray = [];
+  
   let foundPerson = people.filter(function(potentialMatch){
-    if ( potentialMatch.dob === dob){
-      return true;
+      if ( potentialMatch.dob === dob){
+          return true;
       }
-    else{
-      return false;
+      else{
+          return false;
       }
   })
-  dobArray.push(foundPerson);
+  
 return foundPerson;
 }
 
 function searchByHeight(people){
-  let height = promptFor("What is the person's height in inches?", autoValid).toLowerCase();
-  let heightArray=[];
+  let height = Number(promptFor("What is the person's height in inches?", autoValid));
+  
   let foundPerson = people.filter(function(potentialMatch){
-    if ( potentialMatch.height === height){
-      return true;
+      if ( potentialMatch.height === height){
+          return true;
       }
-    else{
-      return false;
+      else{
+          return false;
       }
   })
-  heightArray.push(foundPerson)
-return heightArray;
+  
+return foundPerson;
 }
 
 function searchByWeight(people){
-  let weight = promptFor("What is the person's weight in lbs?", autoValid).toLowerCase();
-  let weightArray = [];
+  let weight = Number(promptFor("What is the person's weight in lbs?", autoValid));
+ 
   let foundPerson = people.filter(function(potentialMatch){
-    if ( potentialMatch.weight === weight){
-      return true;
+      if ( potentialMatch.weight === weight){
+          return true;
       }
-    else{
-      return false;
+      else{
+          return false;
       }
   })
-  weightArray.push(foundPerson)
-return weightArray;
+ 
+return foundPerson;
 }
 
 function searchByOccupation(people){
   let occupation = promptFor("What is the person's occupation?", autoValid).toLowerCase();
-let occupationArray = [];
+
   let foundPerson = people.filter(function(potentialMatch){
-    if ( potentialMatch.occupation === occupation){
-      return true;
+      if ( potentialMatch.occupation === occupation){
+          return true;
       }
-    else{
-      return false;
+      else{
+          return false;
       }
   })
-  occupationArray.push(foundPerson);
-return occupationArray;
+ 
+return foundPerson;
 }
 
 //TODO: add other trait filter functions here.
@@ -271,12 +294,7 @@ function yesNo(input){
 }
 
 // function traits(input){
-//   if(input.toLowerCase() == "gender" || input.toLowerCase() == "dob" || input.toLowerCase() == "height" || input.toLowerCase() == "weight" || input.toLowerCase() == "eye color" || input.toLowerCase() == "occupation"){
-//     return true;
-//   }
-//   else{
-//     return false;
-//   }
+//   if (input.toLowerCase() == "gender" || input.toLowerCase() == "dob" || input.toLowerCase() == "height" || input.toLowerCase() == "weight" || input.toLowerCase() == "eye color" || input.toLowerCase() == "occupation")
 // }
 
 // helper function to pass in as default promptFor validation.
