@@ -100,7 +100,11 @@ function mainMenu(person, people){
       alert ("Gender: " + person[0].gender  + " \n" + "Date of birth: " + person[0].dob + "\n" + "Height (inches): " + person[0].height + "\n" + "Weight(lbs): "+ person[0].weight + "\n" + "Eye Color: "+ person[0].eyeColor + "\n" + "Occupation: "+ person[0].occupation);
     break;
     case "family":
-    // TODO: get person's family
+    //   let spouse = spouseFinder(person, people)
+    //   alert(spouse.firstName + " " +spouse.lastName)
+    // alert(spouseFinder(person, people));
+    let parents = parentsFinder(person, people)
+    alert(parents[0].firstName + " " + parents[0].lastName + "\n" + parents[1].firstName + " " + parents[1].lastName);
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -114,6 +118,43 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
+
+// function to compare objects in arrays to find spouse
+function spouseFinder(someArray, people){
+  let personsSpouse =[];
+  for(let i = 0; i < people.length; i++ ){
+    
+    if (someArray[0].currentSpouse === people[i].id){
+      personsSpouse = people[i];
+    
+    }
+    
+  } return personsSpouse;
+}
+
+
+
+// Parents finder
+
+
+function parentsFinder(someArray, people){
+  let personsParents =[];
+  let parentIDArray = someArray[0].parents;
+  
+  for(let i = 0; i < people.length; i++ ){
+      if ( parentIDArray[0] === people[i].id){               
+      personsParents.push(people[i]);
+    } if
+      (parentIDArray[1]===people[i].id){
+
+      personsParents.push(people[i])
+
+    }
+    
+    
+    }
+    return personsParents;
+  } 
 
 //#endregion
 
