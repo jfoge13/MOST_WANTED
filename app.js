@@ -100,11 +100,14 @@ function mainMenu(person, people){
       alert ("Gender: " + person[0].gender  + " \n" + "Date of birth: " + person[0].dob + "\n" + "Height (inches): " + person[0].height + "\n" + "Weight(lbs): "+ person[0].weight + "\n" + "Eye Color: "+ person[0].eyeColor + "\n" + "Occupation: "+ person[0].occupation);
     break;
     case "family":
+      let parents = parentsFinder(person, people)
+      let siblings = siblingFinder(parents, people);
+alert((siblings[0].firstName + " " + siblings[0].lastName + "\n" + siblings[1].firstName + " " + siblings[1].lastName));
     //   let spouse = spouseFinder(person, people)
     //   alert(spouse.firstName + " " +spouse.lastName)
     // alert(spouseFinder(person, people));
-    let parents = parentsFinder(person, people)
-    alert(parents[0].firstName + " " + parents[0].lastName + "\n" + parents[1].firstName + " " + parents[1].lastName);
+     
+    // alert(parents[0].firstName + " " + parents[0].lastName + "\n" + parents[1].firstName + " " + parents[1].lastName);
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -155,6 +158,41 @@ function parentsFinder(someArray, people){
     }
     return personsParents;
   } 
+
+
+
+// Sibling finder
+//TODO REMOVE FOUND PERSON FROM SIBLING RESULTS
+function siblingFinder(parentIDArray, people){
+  
+ // let parentIDArray = someArray[0].parents;
+  let personsSibling = [];
+  for(let i = 0; i < people.length; i++ ){
+      if ( parentIDArray[0].id === people[i].parents[0]){               
+      personsSibling.push(people[i]);
+
+    }else  if(parentIDArray[0].id===people[i].parents[1]){
+      personsSibling.push(people[i])
+      
+    }else if ( parentIDArray[1].id === people[i].parents[0]){               
+        personsSibling.push(people[i]);
+
+    } else if(parentIDArray[1].id===people[i].parents[1]){
+        personsSibling.push(people[i])
+    }
+    
+    
+    }
+    return personsSibling;
+  } 
+
+
+
+
+
+
+
+
 
 //#endregion
 
