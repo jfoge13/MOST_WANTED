@@ -161,12 +161,17 @@ function spouseFinder(someArray, people){
   let personsSpouse =[];
   for(let i = 0; i < people.length; i++ ){
     
-    if (someArray[0].currentSpouse === people[i].id){
+    if (someArray[0].currentSpouse === null){
+      
+    }else if  (someArray[0].currentSpouse === people[i].id){
       personsSpouse = people[i];
     
+
     }
     
-  } return personsSpouse;
+    
+  } 
+  return personsSpouse;
 }
 
 
