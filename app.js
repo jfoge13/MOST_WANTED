@@ -56,38 +56,15 @@ newArray.sort();
 console.log(newArray);
 return newArray;
 }
-
-//   switch(searchTypeTraits) {
-//     case 'gender':
-//       searchResultTraits = searchByGender(people);
-//       break;
-//     case 'date of birth':
-//       searchResultTraits = searchByDob(people);
-//       break;
-//     case 'height':
-//       searchResultTraits = searchByHeight(people);
-//       break;
-//     case 'weight':
-//       searchResultTraits = searchByWeight(people);
-//       break;
-//     case 'eye color':
-//       searchResultTraits = searchByEyeColor(people);
-//       break;
-//     case 'occupation':
-//       searchResultTraits = searchByOccupation(people);
-//       break;
-//   }
-//   return searchResultTraits;
-// }
   
 // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
 // Menu function to call once you find who you are looking for
-function mainMenu(person, people){
 
 //* Here we pass in the entire person object that we found in our search, 
 //as well as the entire original dataset of people. 
 //We need people in order to find descendants and other information that the user may want.
 
+function mainMenu(person, people){
   if(!person){
     alert("Could not find that individual.");
     return app(people); // restart
@@ -97,17 +74,16 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-      alert ("Gender: " + person[0].gender  + " \n" + "Date of birth: " + person[0].dob + "\n" + "Height (inches): " + person[0].height + "\n" + "Weight(lbs): "+ person[0].weight + "\n" + "Eye Color: "+ person[0].eyeColor + "\n" + "Occupation: "+ person[0].occupation);
+      alert (person[0].firstName + " " + person[0].lastName + "'s info" + "\n" + "Gender: " + person[0].gender  + " \n" + "Date of birth: " + person[0].dob + "\n" + "Height (inches): " + person[0].height + "\n" + "Weight(lbs): "+ person[0].weight + "\n" + "Eye Color: "+ person[0].eyeColor + "\n" + "Occupation: "+ person[0].occupation);
     break;
     case "family":
-      let parents = parentsFinder(person, people)
+      let spouse = spouseFinder(person, people);
+      let parents = parentsFinder(person, people);
       let siblings = siblingFinder(parents, people);
-alert((siblings[0].firstName + " " + siblings[0].lastName + "\n" + siblings[1].firstName + " " + siblings[1].lastName));
-    //   let spouse = spouseFinder(person, people)
-    //   alert(spouse.firstName + " " +spouse.lastName)
-    // alert(spouseFinder(person, people));
-     
-    // alert(parents[0].firstName + " " + parents[0].lastName + "\n" + parents[1].firstName + " " + parents[1].lastName);
+      let displayS = displaySiblings(siblings);
+      let displayP = displayParents(parents);
+      let displaySps = displaySpouse(spouse)
+      alert(displaySps + "\n" + displayP + "\n" + displayS);
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -120,6 +96,30 @@ alert((siblings[0].firstName + " " + siblings[0].lastName + "\n" + siblings[1].f
     default:
     return mainMenu(person, people); // ask again
   }
+}
+// functions for alerting
+function displaySiblings(array){
+  let nameResult = "";
+  for(let i = 0; i<array.length; i++){
+    nameResult += array[i].firstName + " " + array[i].lastName + "\n";
+  }
+  return "Siblings: " + nameResult;
+}
+
+function displayParents(array){
+  let nameResult = "";
+  for(let i = 0; i<array.length; i++){
+    nameResult += array[i].firstName + " " + array[i].lastName + "\n";
+  }
+  return "Parents: " + nameResult;
+}
+
+function displaySpouse(array){
+  let nameResult = "";
+  for(let i = 0; i<array.length; i++){
+    nameResult += array[i].firstName + " " + array[i].lastName + "\n";
+  }
+  return "Spouse: " + nameResult;
 }
 
 // function to compare objects in arrays to find spouse
