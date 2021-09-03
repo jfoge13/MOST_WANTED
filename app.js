@@ -117,6 +117,10 @@ function displayParents(array){
 }
 
 function displaySpouse(array){
+  if (array.length === 0){
+    return "Spouse: ";
+  }
+  
   let nameResult = array.firstName + " " + array.lastName + "\n";
   
   return "Spouse: " + nameResult;
