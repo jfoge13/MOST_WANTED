@@ -86,7 +86,9 @@ function mainMenu(person, people){
       alert(displaySps + "\n" + displayP + "\n" + displayS);
     break;
     case "descendants":
-    // TODO: get person's descendants
+      let descendants = descendantsFinder(person, people);
+      let displayD = displayDescendants(descendants);
+      alert(displayD);    
     break;
     case "restart":
     app(people); // restart
@@ -120,6 +122,40 @@ function displaySpouse(array){
   return "Spouse: " + nameResult;
 }
 
+//function to display descendants
+
+function displayDescendants(array){
+  let nameResult = "";
+  for(let i = 0; i<array.length; i++){
+    nameResult += array[i].firstName + " " + array[i].lastName + "\n";
+  }
+  if (nameResult === ""){
+    return "No descendants";
+  }
+  else {
+  return "Descendants: " + nameResult;
+  }
+}
+
+// funtion to find descendants
+
+function descendantsFinder(someArray, people){
+  let descendants =[];
+  let descendantID = someArray[0].id;
+  for(let i = 0; i < people.length; i++){
+    if (people[i].parents[0] === undefined){
+    } 
+    else if (people[i].parents[0] === descendantID){               
+      descendants.push(people[i]);
+    } 
+    else if (people[i].parents[1] === undefined){
+    } 
+    else if (people[i].parents[1] === descendantID){
+      descendants.push(people[i]);
+    }
+  }
+  return descendants;
+}
 // function to compare objects in arrays to find spouse
 function spouseFinder(someArray, people){
   let personsSpouse =[];
