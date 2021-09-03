@@ -115,10 +115,8 @@ function displayParents(array){
 }
 
 function displaySpouse(array){
-  let nameResult = "";
-  for(let i = 0; i<array.length; i++){
-    nameResult += array[i].firstName + " " + array[i].lastName + "\n";
-  }
+  let nameResult = array.firstName + " " + array.lastName + "\n";
+  
   return "Spouse: " + nameResult;
 }
 
@@ -164,7 +162,9 @@ function parentsFinder(someArray, people){
 // Sibling finder
 //TODO REMOVE FOUND PERSON FROM SIBLING RESULTS
 function siblingFinder(parentIDArray, people){
-  
+  if (parentIDArray.length === 0){
+return [];
+  }else{
  // let parentIDArray = someArray[0].parents;
   let personsSibling = [];
   for(let i = 0; i < people.length; i++ ){
@@ -185,7 +185,7 @@ function siblingFinder(parentIDArray, people){
     }
     return personsSibling;
   } 
-
+}
 
 
 
