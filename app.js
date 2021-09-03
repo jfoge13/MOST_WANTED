@@ -45,6 +45,13 @@ function appTraits(people){
   if(searchTypeTraits.includes("occupation")){
      newArray = searchByOccupation(newArray);
   }  
+
+  if (newArray.length > 1) {
+        let chooseName = prompt("Here are the people we found: " + nameDisplay(newArray) + "are one of these people the one you're lookling for? (yes or no)", yesNo);
+        if (chooseName === true);
+        searchByName(people);
+      
+  }
 newArray.sort();
 console.log(newArray);
 return newArray;
@@ -274,11 +281,22 @@ function yesNo(input){
   }
 }
 
+//This function validates user input for initialization of trait search function
+
 function traitsType(input){
-  if(input.toLowerCase().includes("gender" || "date of birth" || "height" || "weight" || "eye color" || "occupation")){
+  if(input.includes("gender")){
     return true;
-  }
-  else{
+  } else if(input.includes("date of birth")){
+    return true;
+  } else if(input.includes("height")){
+    return true;
+  } else if(input.includes("weight")){
+    return true;
+  } else if(input.includes("eye color")){
+    return true;
+  } else if(input.includes("occupation")){
+    return true;
+  } else{
     return false;
   }
 }
@@ -295,3 +313,15 @@ function customValidation(input){
 }
 
 //#endregion
+
+
+
+function nameDisplay(listofpeople){
+ let fullName = "";
+  for (let i=0; i < listofpeople.length; i++){
+    fullName += listofpeople[i].firstName + " " + listofpeople[i].lastName + ", "
+
+    
+  }
+  return fullName;
+}
