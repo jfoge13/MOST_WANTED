@@ -268,6 +268,7 @@ function searchByName(people){
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
   let eyeColor = promptFor("What is the person's eye color? (blue, brown, hazel, green, black)", autoValid).toLowerCase();
+  if (eyeColorValidation(eyeColor)=== true){
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.eyeColor === eyeColor){
         return true;
@@ -276,9 +277,14 @@ function searchByEyeColor(people){
         return false;
       }
   })
-  
-return foundPerson  ;
+  return foundPerson;
+}else{
+  let results = searchByEyeColor(people);
+  return results;
 }
+}
+
+
 
 
 function searchByGender(people){
@@ -451,4 +457,20 @@ function nameDisplay(listofpeople){
     
   }
   return fullName;
+}
+
+function eyeColorValidation(eyeColor){
+  if (eyeColor === "brown"){
+    return true;
+  }if (eyeColor === "blue"){
+    return true;
+  }if (eyeColor === "green"){
+    return true;
+  }if (eyeColor === "black"){
+    return true;
+  }if (eyeColor=== "hazel"){
+    return true;
+  }else{
+    return false;
+  }
 }
