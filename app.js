@@ -289,6 +289,9 @@ function searchByEyeColor(people){
 
 function searchByGender(people){
   let gender = promptFor("What is the person's gender? (male, female)", autoValid).toLowerCase();
+  if (genderValidation(gender) === false){
+    return searchByGender(people);
+  }else{
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.gender === gender){
         return true;
@@ -299,6 +302,18 @@ function searchByGender(people){
   })
   
 return foundPerson;
+  }
+}
+
+//Gender input validation function
+function genderValidation(gender){
+  if (gender === "female"){
+    return true;
+  }if( gender === "male"){
+    return true;
+}else{
+  return false;
+}
 }
 
 function searchByDob(people){
