@@ -51,7 +51,7 @@ function appTraits(people){
         if (chooseName === true);
         searchByName(people);
       
-  }if (newArray.length === 0){
+  }else if (newArray.length === 0){
     alert ("Could not find anyone matching that description. Please try again.");
     return app(people);
   }
@@ -338,6 +338,9 @@ function searchByHeight(people){
 
 function searchByWeight(people){
   let weight = Number(promptFor("What is the person's weight in lbs? (number)", autoValid));
+  if (isNaN(weight)===true){
+    return searchByWeight(people);
+  }else{
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.weight === weight){
         return true;
@@ -346,9 +349,10 @@ function searchByWeight(people){
         return false;
       }
   })
- 
 return foundPerson;
 }
+}
+
 
 function searchByOccupation(people){
   let occupation = promptFor("What is the person's occupation?", autoValid).toLowerCase();
