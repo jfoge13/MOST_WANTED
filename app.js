@@ -51,6 +51,9 @@ function appTraits(people){
         if (chooseName === true);
         searchByName(people);
       
+  }if (newArray.length === 0){
+    alert ("Could not find anyone matching that description. Please try again.");
+    return app(people);
   }
 newArray.sort();
 console.log(newArray);
