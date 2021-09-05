@@ -317,7 +317,10 @@ return foundPerson;
 
 function searchByHeight(people){
   let height = Number(promptFor("What is the person's height in inches? (number)", autoValid));
-  let foundPerson = people.filter(function(potentialMatch){
+  if (isNaN(height)===true){
+    return searchByHeight(people);
+  }else{
+     let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.height === height){
         return true;
       }
@@ -325,9 +328,13 @@ function searchByHeight(people){
         return false;
       }
   })
-  
-return foundPerson;
+  return foundPerson;
 }
+
+}
+
+
+
 
 function searchByWeight(people){
   let weight = Number(promptFor("What is the person's weight in lbs? (number)", autoValid));
@@ -459,6 +466,8 @@ function nameDisplay(listofpeople){
   return fullName;
 }
 
+
+//Function to validate input for searchForEyeColorFunction
 function eyeColorValidation(eyeColor){
   if (eyeColor === "brown"){
     return true;
@@ -474,3 +483,4 @@ function eyeColorValidation(eyeColor){
     return false;
   }
 }
+
