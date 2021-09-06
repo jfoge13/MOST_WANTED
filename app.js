@@ -100,21 +100,6 @@ function mainMenu(person, people){
       let displayD = displayDescendants(descendants);
       alert(displayD);    
     break;
-
-    // case includes("info", "family", "descendants"):
-    //   alert (person[0].firstName + " " + person[0].lastName + "'s info:" + "\n" + "Gender: " + person[0].gender  + " \n" + "Date of birth: " + person[0].dob + "\n" + "Height (inches): " + person[0].height + "\n" + "Weight(lbs): "+ person[0].weight + "\n" + "Eye Color: "+ person[0].eyeColor + "\n" + "Occupation: "+ person[0].occupation);
-    //   spouse = spouseFinder(person, people);
-    //   parents = parentsFinder(person, people);
-    //   siblings = siblingFinder(parents, people);
-    //   displayS = displaySiblings(siblings);
-    //   displayP = displayParents(parents);
-    //   displaySps = displaySpouse(spouse);
-    //   alert(displaySps + "\n" + displayP + "\n" + displayS);
-    //   descendants = descendantsFinder(person, people);
-    //   displayD = displayDescendants(descendants);
-    //   alert(displayD);    
-    // break;
-
     case "restart":
     app(people); // restart
     break;
@@ -249,7 +234,7 @@ function siblingFinder(parentIDArray, people){
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", autoValid).toLowerCase();
   let lastName = promptFor("What is the person's last name?", autoValid).toLowerCase();
-    let foundPerson = people.filter(function(potentialMatch){
+  let foundPerson = people.filter(function(potentialMatch){
     if(potentialMatch.firstName.toLowerCase() === firstName && potentialMatch.lastName.toLowerCase() === lastName){
       return true;
     }
@@ -323,13 +308,13 @@ function genderValidation(gender){
     return true;
   }if( gender === "male"){
     return true;
-}else{
-  return false;
-}
+  }else{
+    return false;
+  }
 }
 
 function searchByDob(people){
-  let dob = promptFor("What is the person's D.O.B.? (dd/mm/yy)", autoValid).toLowerCase();
+  let dob = promptFor("What is the person's D.O.B.? (dd/mm/yyyy)", autoValid).toLowerCase();
   let foundPerson = people.filter(function(potentialMatch){
       if ( potentialMatch.dob === dob){
         return true;
@@ -338,7 +323,6 @@ function searchByDob(people){
         return false;
       }
   })
-  
 return foundPerson;
 }
 
@@ -356,7 +340,7 @@ function searchByHeight(people){
       }
   })
 return foundPerson;
-}
+  }
 }
 
 function searchByWeight(people){
@@ -373,7 +357,7 @@ function searchByWeight(people){
       }
   })
 return foundPerson;
-}
+  }
 }
 
 function searchByOccupation(people){
@@ -386,7 +370,6 @@ function searchByOccupation(people){
         return false;
       }
   })
- 
 return foundPerson;
 }
 
