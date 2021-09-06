@@ -45,13 +45,12 @@ function appTraits(people){
   if(searchTypeTraits.includes("occupation")){
      newArray = searchByOccupation(newArray);
   }  
-
   if (newArray.length > 1) {
-        let chooseName = prompt("Here are the people we found: " + nameDisplay(newArray) + "are one of these people the one you're lookling for? (yes or no)", yesNo);
+        let chooseName = prompt("Here are the people we found: " + "\n" + nameDisplay(newArray) + "Do you see the person you are lookling for? (yes or no)", yesNo);
         if (chooseName === true);
         searchByName(people);
-      
-  }else if (newArray.length === 0){
+  }
+  else if (newArray.length === 0){
     alert ("Could not find anyone matching that description. Please try again.");
     return app(people);
   }
@@ -479,9 +478,7 @@ function customValidation(input){
 function nameDisplay(listofpeople){
  let fullName = "";
   for (let i=0; i < listofpeople.length; i++){
-    fullName += listofpeople[i].firstName + " " + listofpeople[i].lastName + ", "
-
-    
+    fullName += listofpeople[i].firstName + " " + listofpeople[i].lastName + "\n"
   }
   return fullName;
 }
