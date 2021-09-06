@@ -456,6 +456,7 @@ function traitsType(input){
   } else if(input.includes("occupation")){
     return true;
   } else{
+    alert("Please make sure you've correctly spelled the traits for which you are searching in order to move forward.")
     return false;
   }
 }
