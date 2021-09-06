@@ -17,14 +17,14 @@ function app(people){
       searchResults = appTraits(people);
       break;
       default:
-    app(people); // restart app
+      app(people); // restart app
       break;
   }
   mainMenu(searchResults, people);
 }
 
 function appTraits(people){
-  let searchTypeTraits = promptFor("Which trait(s) of the person would you like to search for? Please enter 'gender', 'date of birth', 'height', 'weight', 'eye color', and/or 'occupation' with spaces in between trait options. Thank you!", traitsType).toLowerCase();
+  let searchTypeTraits = promptFor("Which trait(s) of the person would you like to search for? Please enter 'gender', 'date of birth', 'height', 'weight', 'eye color', and/or 'occupation'. Thank you!", traitsType).toLowerCase();
   let newArray = people;
   if (searchTypeTraits.includes("gender")){
     newArray = searchByGender(newArray);
@@ -46,15 +46,26 @@ function appTraits(people){
   }  
   if (newArray.length > 1) {
     let chooseName = promptFor("Here are the people we found: " + "\n" + nameDisplay(newArray) + "Do you see the person you are lookling for? (yes or no)", yesNo).toLowerCase();
-    if (chooseName === true);
-    searchByName(people);
+    let nameChosen;
+    switch(chooseName){
+      case 'yes':
+        nameChosen = searchByName(people);
+        break;
+      case 'no':
+        alert ("Please try your search again with additional traits included to narrow down your search.");
+        nameChosen = appTraits(people);
+        break;
+        default:
+        chooseName;
+        break;
+    }
   }
   else if (newArray.length === 0){
     alert ("Could not find anyone matching that description. Please try again.");
     return app(people);
   }
 newArray.sort();
-console.log(newArray);
+//console.log(newArray);
 return newArray;
 }
   
