@@ -26,7 +26,7 @@ function app(people){
 function appTraits(people){
   let searchTypeTraits = promptFor("Which trait(s) of the person would you like to search for? Please enter 'gender', 'date of birth', 'height', 'weight', 'eye color', and/or 'occupation'. Thank you!", traitsType).toLowerCase();
   let newArray = people;
-  if (searchTypeTraits.includes("gender")){
+  if(searchTypeTraits.includes("gender")){
     newArray = searchByGender(newArray);
   }
   if(searchTypeTraits.includes("date of birth")){
@@ -44,7 +44,7 @@ function appTraits(people){
   if(searchTypeTraits.includes("occupation")){
      newArray = searchByOccupation(newArray);
   }  
-  if (newArray.length > 1) {
+  if(newArray.length > 1) {
     let chooseName = promptFor("Here are the people we found: " + "\n" + nameDisplay(newArray) + "Do you see the person you are lookling for? (yes or no)", yesNo).toLowerCase();
     let nameChosen;
     switch(chooseName){
@@ -52,7 +52,7 @@ function appTraits(people){
         nameChosen = searchByName(people);
         break;
       case 'no':
-        alert ("Please try your search again with additional traits included to narrow down your search.");
+        alert("Please try your search again with additional traits included to narrow down your search.");
         nameChosen = appTraits(people);
         break;
         default:
@@ -60,8 +60,8 @@ function appTraits(people){
         break;
     }
   }
-  else if (newArray.length === 0){
-    alert ("Could not find anyone matching that description. Please try again.");
+  else if(newArray.length === 0){
+    alert("Could not find anyone matching that description. Please try again.");
     return app(people);
   }
 newArray.sort();
@@ -81,10 +81,10 @@ function mainMenu(person, people){
     alert("Could not find that individual.");
     return app(people); // restart
   }
-  let displayOption = promptFor("Found " + person[0].firstName + " " + person[0].lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
+  let displayOption = promptFor("Found " + person[0].firstName + " " + person[0].lastName + "." + "\n" + "Do you want to know their 'info', 'family', or 'descendants'?" + "\n" + "Type the option you want or 'restart' or 'quit'.", autoValid);
   switch(displayOption){
     case "info":
-      alert (person[0].firstName + " " + person[0].lastName + "'s info" + "\n" + "Gender: " + person[0].gender  + " \n" + "Date of birth: " + person[0].dob + "\n" + "Height (inches): " + person[0].height + "\n" + "Weight(lbs): "+ person[0].weight + "\n" + "Eye Color: "+ person[0].eyeColor + "\n" + "Occupation: "+ person[0].occupation);
+      alert (person[0].firstName + " " + person[0].lastName + "'s info:" + "\n" + "Gender: " + person[0].gender  + " \n" + "Date of birth: " + person[0].dob + "\n" + "Height (inches): " + person[0].height + "\n" + "Weight(lbs): "+ person[0].weight + "\n" + "Eye Color: "+ person[0].eyeColor + "\n" + "Occupation: "+ person[0].occupation);
     break;
     case "family":
       let spouse = spouseFinder(person, people);
@@ -92,7 +92,7 @@ function mainMenu(person, people){
       let siblings = siblingFinder(parents, people);
       let displayS = displaySiblings(siblings);
       let displayP = displayParents(parents);
-      let displaySps = displaySpouse(spouse)
+      let displaySps = displaySpouse(spouse);
       alert(displaySps + "\n" + displayP + "\n" + displayS);
     break;
     case "descendants":
@@ -100,6 +100,21 @@ function mainMenu(person, people){
       let displayD = displayDescendants(descendants);
       alert(displayD);    
     break;
+
+    // case includes("info", "family", "descendants"):
+    //   alert (person[0].firstName + " " + person[0].lastName + "'s info:" + "\n" + "Gender: " + person[0].gender  + " \n" + "Date of birth: " + person[0].dob + "\n" + "Height (inches): " + person[0].height + "\n" + "Weight(lbs): "+ person[0].weight + "\n" + "Eye Color: "+ person[0].eyeColor + "\n" + "Occupation: "+ person[0].occupation);
+    //   spouse = spouseFinder(person, people);
+    //   parents = parentsFinder(person, people);
+    //   siblings = siblingFinder(parents, people);
+    //   displayS = displaySiblings(siblings);
+    //   displayP = displayParents(parents);
+    //   displaySps = displaySpouse(spouse);
+    //   alert(displaySps + "\n" + displayP + "\n" + displayS);
+    //   descendants = descendantsFinder(person, people);
+    //   displayD = displayDescendants(descendants);
+    //   alert(displayD);    
+    // break;
+
     case "restart":
     app(people); // restart
     break;
@@ -232,39 +247,59 @@ function siblingFinder(parentIDArray, people){
 
 // nearly finished function used to search through an array of people to find matching first and last name and return a SINGLE person object.
 function searchByName(people){
-  let firstName = promptFor("What is the person's first name?", autoValid);
-  let lastName = promptFor("What is the person's last name?", autoValid);
-  let foundPerson = people.filter(function(potentialMatch){
-    if(potentialMatch.firstName === firstName && potentialMatch.lastName === lastName){
+  let firstName = promptFor("What is the person's first name?", autoValid).toLowerCase();
+  let lastName = promptFor("What is the person's last name?", autoValid).toLowerCase();
+    let foundPerson = people.filter(function(potentialMatch){
+    if(potentialMatch.firstName.toLowerCase() === firstName && potentialMatch.lastName.toLowerCase() === lastName){
       return true;
     }
     else {
       return false;
     }
-  })
-  // TODO: find the person single person object using the name they entered.
-return foundPerson;
+    })
+  return foundPerson;
 }
+// TODO: find the person single person object using the name they entered.
 
 // unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
   let eyeColor = promptFor("What is the person's eye color? (blue, brown, hazel, green, black)", autoValid).toLowerCase();
-  if (eyeColorValidation(eyeColor)=== true){
+  if (eyeColorValidation(eyeColor) === true){
   let foundPerson = people.filter(function(potentialMatch){
-      if ( potentialMatch.eyeColor === eyeColor){
-        return true;
-      }
-      else{
-        return false;
-      }
-  })
+    if ( potentialMatch.eyeColor === eyeColor){
+      return true;
+    }
+    else{
+      return false;
+    }
+    })
   return foundPerson;
-}else{
-  let results = searchByEyeColor(people);
-  return results;
-}
+  }
+  else{
+    alert ("There is no one in the database with that eye color, please search again by entering an available eye color.");
+    let results = searchByEyeColor(people);
+    return results;
+  } 
 }
 
+// Function to validate input for searchForEyeColorFunction
+function eyeColorValidation(eyeColor){
+  if (eyeColor === "brown"){
+    return true;
+  }if (eyeColor === "blue"){
+    return true;
+  }if (eyeColor === "green"){
+    return true;
+  }if (eyeColor === "black"){
+    return true;
+  }if (eyeColor=== "hazel"){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+// Function to search by gender of person
 function searchByGender(people){
   let gender = promptFor("What is the person's gender? (male, female)", autoValid).toLowerCase();
   if (genderValidation(gender) === false){
@@ -450,23 +485,6 @@ function autoValid(input){
 // Unfinished validation function you can use for any of your custom validation callbacks.
 // can be used for things like eye color validation for example.
 function customValidation(input){
-}
-
-// Function to validate input for searchForEyeColorFunction
-function eyeColorValidation(eyeColor){
-  if (eyeColor === "brown"){
-    return true;
-  }if (eyeColor === "blue"){
-    return true;
-  }if (eyeColor === "green"){
-    return true;
-  }if (eyeColor === "black"){
-    return true;
-  }if (eyeColor=== "hazel"){
-    return true;
-  }else{
-    return false;
-  }
 }
 
 //#endregion
