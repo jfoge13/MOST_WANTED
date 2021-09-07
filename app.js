@@ -49,22 +49,24 @@ function appTraits(people){
     let nameChosen;
     switch(chooseName){
       case 'yes':
-        nameChosen = searchByName(people);
+        nameChosen =searchByName(people);
+        
         break;
       case 'no':
         alert("Please try your search again with additional traits included to narrow down your search.");
-        nameChosen = appTraits(people);
+        appTraits(people);
         break;
         default:
         chooseName;
         break;
     }
+    return nameChosen;
   }
   else if(newArray.length === 0){
     alert("Could not find anyone matching that description. Please try again.");
     return app(people);
   }
-newArray.sort();
+
 //console.log(newArray);
 return newArray;
 }
